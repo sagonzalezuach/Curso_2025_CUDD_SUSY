@@ -1,23 +1,32 @@
 import streamlit as st
+from openai import OpenAI
 
-st.title("¡Hola, Bienvenido!")
-st.write("¡Comencemos!")
+# Show title and description.
+st.title("💬 Chatbot")
 
-# Texto y emoji
-st.write("🚀 Bienvenido a tu primera aplicación interactiva con **Streamlit**.")
+openai_api_key = st.secrets["api_key"] 
+# Create an OpenAI client.
+client = OpenAI(api_key=openai_api_key)
 
-# Entrada de texto
-nombre = st.text_input("¿Cuál es tu nombre?")
-if nombre:
-    st.success(f"¡Hola, {nombre}! 👋 Qué bueno tenerte aquí.")
+#prompt = st.chat_input("What is up?")
+#if prompt==None:
+#   st.stop()
 
-# Selector de opciones
-opcion = st.selectbox("¿Qué tema te interesa aprender?", ["Python", "Machine Learning", "Visualización", "Streamlit"])
-st.write(f"Elegiste aprender sobre: **{opcion}**.")
+#with st.chat_message("user"):
+#   st.markdown(prompt)
 
-# Checkbox
-if st.checkbox("¿Te gusta Streamlit?"):
-    st.balloons()
+# Generate a response using the OpenAI API.
 
-# Imagen de prueba (requiere que subas una o pongas una URL)
-st.image("https://upload.wikimedia.org/wikipedia/commons/b/bd/Logo_%2BUACH.svg")
+#stream = client.chat.completions.create(
+#        model="gpt-4o-mini",  
+#        messages=[
+#            {"role": "system", "content": "You are an assistant."},
+#            {"role": "user", "content": prompt}
+#        ],
+#        max_tokens=800,
+#        temperature=0,
+#    )
+#respuesta = stream.choices[0].message.content
+
+#with st.chat_message("assistant"):
+#   st.write(respuesta)
